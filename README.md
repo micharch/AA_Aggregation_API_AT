@@ -19,7 +19,9 @@ A .NET-based aggregation service that merges data from multiple external APIs (N
 "Jwt": {
   "Key":      "<32-byte-base64-secret>",
   "Issuer":   "https://your.issuer",
-  "Audience": "your-api"
+  "Audience": "your-api",
+  "User": "testuser",
+  "Password": "P@ssw0rd!"
 }
 
 
