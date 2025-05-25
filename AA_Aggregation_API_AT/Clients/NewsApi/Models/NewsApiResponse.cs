@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using AA_Aggregation_API_AT.Clients.Base;
+using System.Text.Json.Serialization;
 #nullable disable
 namespace AA_Aggregation_API_AT.Clients.NewsApi.Models
 {
-    public class NewsApiResponse
+    public class NewsApiResponse : ApiResponseBase
     {
         [JsonPropertyName("status")]
         public string Status { get; set; }

@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using AA_Aggregation_API_AT.Clients.Base;
+using System.Text.Json.Serialization;
 #nullable disable
 namespace AA_Aggregation_API_AT.Clients.Rawg.Models
 {
-    public class RawgResponse
+    public class RawgResponse : ApiResponseBase
     {
         [JsonPropertyName("count")]
         public int TotalResults { get; set; }

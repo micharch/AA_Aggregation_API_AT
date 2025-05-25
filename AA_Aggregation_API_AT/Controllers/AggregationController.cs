@@ -1,6 +1,5 @@
-using AA_Aggregation_API_AT.Clients.NewsApi;
-using AA_Aggregation_API_AT.Clients.OpenWeather;
-using AA_Aggregation_API_AT.Clients.Rawg;
+using AA_Aggregation_API_AT.Aggregation.Interfaces;
+using AA_Aggregation_API_AT.Aggregation.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AA_Aggregation_API_AT.Controllers
@@ -9,46 +8,17 @@ namespace AA_Aggregation_API_AT.Controllers
     [Route("api/[controller]")]
     public class AggregationController : ControllerBase
     {
+        private readonly IAggregationService _aggregationService;
 
-        private readonly ILogger<AggregationController> _logger;
-        private readonly OpenWeatherClient _openWeatherClient;
-        private readonly NewsApiClient _newsApiClient;
-        private readonly RawgClient _rawgClient;
-
-        public AggregationController(
-            ILogger<AggregationController> logger,
-            OpenWeatherClient openWeatherClient,
-            NewsApiClient newsApiClient,
-            RawgClient rawgClient)
+        public AggregationController(IAggregationService aggregationService)
         {
-            _logger = logger;
-            _openWeatherClient = openWeatherClient;
-            _newsApiClient = newsApiClient;
-            _rawgClient = rawgClient;
+            _aggregationService = aggregationService;
         }
 
-        //[HttpGet("{query}")]
-        //public async Task<IActionResult> Get(string query)
-        //{
-        //    var cityWeather = await _openWeatherClient.GetCityInfoAsync(query);
-        //    return cityWeather is null 
-        //        ? NotFound()
-        //        : Ok(cityWeather);
-        //}
-
-        //[HttpGet("{query}")]
-        //public async Task<IActionResult> Get(string query)
-        //{
-        //    var response = await _newsApiClient.GetResultsAsync(query);
-        //    return response is null
-        //        ? NotFound()
-        //        : Ok(response);
-        //}
-
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] AggregationRequest request)
         {
-            var response = await _rawgClient.GetResultsAsync();
+            var response = await _aggregationService.GetAllAsync(request);
             return response is null
                 ? NotFound()
                 : Ok(response);

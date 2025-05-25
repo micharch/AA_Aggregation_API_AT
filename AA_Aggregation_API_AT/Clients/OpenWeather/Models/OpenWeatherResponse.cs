@@ -1,11 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using AA_Aggregation_API_AT.Clients.Base;
+using System.Text.Json.Serialization;
 #nullable disable
 namespace AA_Aggregation_API_AT.Clients.OpenWeather.Models
 {
-    public class OpenWeatherResponse
+    public class OpenWeatherResponse : ApiResponseBase
     {
         [JsonPropertyName("main")]
         public OpenWeatherMain Main { get; set; }
+        [JsonPropertyName("cod")]
+        public int Status { get; set; }
     }
 
     public class OpenWeatherMain
