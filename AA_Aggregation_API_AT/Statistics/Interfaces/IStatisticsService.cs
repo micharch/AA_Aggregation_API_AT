@@ -6,5 +6,8 @@ namespace AA_Aggregation_API_AT.Statistics.Interfaces
     {
         void Record(string apiName, TimeSpan responseTime);
         StatisticsResult GetStatistics();
+        IEnumerable<string> GetApiNames();
+        double GetGlobalAverageMs(string apiName);
+        double GetWindowAverageMs(string apiName, TimeSpan window);
     }
 }
