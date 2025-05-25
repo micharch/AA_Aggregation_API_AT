@@ -5,8 +5,8 @@ using AA_Aggregation_API_AT.Aggregation.Interfaces;
 using AA_Aggregation_API_AT.Aggregation.Models;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Globalization;
-using static AA_Aggregation_API_AT.Cache.CacheHelper;
 using Microsoft.Extensions.Caching.Memory;
+using AA_Aggregation_API_AT.Cache;
 
 namespace AA_Aggregation_API_AT.Clients.NewsApi
 {
