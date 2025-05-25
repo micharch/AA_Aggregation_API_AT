@@ -108,7 +108,7 @@ Statistics
 
     Located in Tests/
 
-    Built with xUnit & Moq
+    Built with xUnit
 
     Covers:
 
