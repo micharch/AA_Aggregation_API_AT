@@ -1,11 +1,13 @@
 using AA_Aggregation_API_AT.Aggregation.Interfaces;
 using AA_Aggregation_API_AT.Aggregation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AA_Aggregation_API_AT.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AggregationController : ControllerBase
     {
         private readonly IAggregationService _aggregationService;
@@ -19,9 +21,7 @@ namespace AA_Aggregation_API_AT.Controllers
         public async Task<IActionResult> Get([FromQuery] AggregationRequest request)
         {
             var response = await _aggregationService.GetAllAsync(request);
-            return response is null
-                ? NotFound()
-                : Ok(response);
+            return Ok(response);
         }
     }
 }

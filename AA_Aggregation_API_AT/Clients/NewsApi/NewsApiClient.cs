@@ -16,7 +16,7 @@ namespace AA_Aggregation_API_AT.Clients.NewsApi
         private readonly ILogger<NewsApiClient> _logger;
         private readonly IMemoryCache _cache;
         private static readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(1);
-        private static string[] _includedProperties = 
+        private static string[] _includedProperties =
             {
                 nameof(AggregationRequest.Query),
                 nameof(AggregationRequest.From),
@@ -76,11 +76,14 @@ namespace AA_Aggregation_API_AT.Clients.NewsApi
         {
             var extraParameters = new Dictionary<string, string>();
 
-            if (request.From.HasValue) extraParameters["from"] =  request.From.Value.ToString("o", CultureInfo.InvariantCulture);
+            if (request.From.HasValue) extraParameters["from"] = request.From.Value.ToString("o", CultureInfo.InvariantCulture);
             if (request.To.HasValue) extraParameters["to"] = request.To.Value.ToString("o", CultureInfo.InvariantCulture);
             if (request.Sort.HasValue) extraParameters["sortBy"] = request.Sort.Value.ToString().ToLower();
 
-            return QueryHelpers.AddQueryString(baseUrl, extraParameters);
+
+            return extraParameters.Count > 0
+                ? QueryHelpers.AddQueryString(baseUrl, extraParameters!) 
+                : baseUrl;
         }
     }
 }
