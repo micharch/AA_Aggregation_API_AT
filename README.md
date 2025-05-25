@@ -7,7 +7,7 @@ A .NET-based aggregation service that merges data from multiple external APIs (N
 ## 📂 Repository Layout
 
 / (solution root)
-├── ApiAggregator/ # main ASP.NET Core project
+├── AA_Aggregation_API_AT/ # main ASP.NET Core project
 ├── Tests/ # xUnit test project
 └── README.md # this file
 
@@ -60,7 +60,7 @@ Aggregation
 
             query (required)
 
-            page, pageSize, from, to, sort (optional)
+            from, to, sort (optional)
 
         Header: Authorization: Bearer <jwt>
 
@@ -104,7 +104,7 @@ Statistics
 
 ✅ Unit Tests
 
-    Located in ApiAggregator.Tests/
+    Located in Tests/
 
     Built with xUnit & Moq
 
